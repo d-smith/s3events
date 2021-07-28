@@ -1,0 +1,18 @@
+service: bucket-processor
+
+  
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs12.x
+
+  
+functions:
+  bucketmon:
+    handler: handler.handleS3Event
+    events:
+      - s3:
+          bucket: be97068
+          event: s3:ObjectCreated:*
+    
